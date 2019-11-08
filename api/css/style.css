@@ -1,0 +1,27 @@
+
+			* {
+ 				margin: 0px 0px 0px 0px;
+ 				padding: 0px 0px 0px 0px;
+  				box-sizing: border-box;
+			}
+			body, html {
+ 				font-size: 14pt;
+ 				text-align: center;
+			}	
+			.login{
+				position: relative;
+				display: table;
+				margin-top: 300px;
+				margin-left: auto;
+				margin-right: auto;
+				margin-buttom auto;
+				border: 1px solid #000;
+				width: 200px;
+				align-text: center;
+			}
+			.form{
+				margin: auto;
+				border: 1px solid #000;
+				width: 200px;
+				align-text: center;
+			}
