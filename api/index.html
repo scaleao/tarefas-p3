@@ -9,21 +9,52 @@
 				<h1>Cadastro</h1>
 				<form action="" method="post">
 					<div>
-						<input type="text" name="name" placeholder="Insera seu nome">
+						<input type="text" name="name" id="inputname" placeholder="Insera seu nome">
 					</div>
 					<div>
-						<input type="text" name="email" placeholder="Insera seu email">
+						<input type="text" name="email" id="inputemail" placeholder="Insera seu email">
 					</div>
 					<div>
-						<input type="password" name="password">
+						<input type="password" id="inputpassword" name="password">
 					</div>
 					<div>
-						<input type="submit" value="cadastrar">
+						<input type="submit" id="btn" value="cadastrar">
 					</div>
 				</form>
+				<div id='messages' style="border: thin black solid; "></div>
 			<div>
 			<a href="./login.html">Tela de login</a>
 		</div>
 		<script src="./js/main.js"></script>
 	</body>
+	<script>
+	        var n = document.getElementById('inputname');
+	        var e = document.getElementById('inputemail');
+	        var p = document.getElementById('inputpassword');
+	        var b = document.getElementById('btn');
+	        var m = document.getElementById('messages');
+	        b.addEventListener('click', function(){
+	            var user = {
+	                "name"  : n.value,
+	                "email" : e.value,
+	                "password" : p.value
+	            };
+	            var myheaders = new Headers({
+	                'Content-Type': 'application/json',
+	                'Accept' : 'application/json'
+	            });
+	 fetch('https://todo.della-mura.com.br/api/register', {
+	    method: 'post',
+	    headers: myheaders,
+	    body: JSON.stringify(user)
+	  }).then(function(response) {
+	    response.json().then(function(data){
+	    	m.innerText = data.message;
+	    });
+	  }).catch(function(error) {
+	    m.innerText = error;
+	  });
+	            m.innerText = 'aguardando...';
+	        });
+	</script>
 </html>

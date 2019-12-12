@@ -9,18 +9,46 @@
 				<h1>Login</h1>
 				<form action="" method="post">
 					<div>
-						<input type="text" name="email" placeholder="Insera seu email">
+						<input type="text" name="email" id="inputemail" placeholder="Insera seu email">
 					</div>
 					<div>
-						<input type="password" name="password">
+						<input type="password" name="password" id="inputpassword">
 					</div>
 					<div>
-						<input type="submit" value="login">
+						<input type="submit" value="login" id="btn">
 					</div>
 				</form>
+				<div id='messages' style="border: thin black solid; "></div>
 			<div>
 			<a href="./index.html">Tela de Cadastro</a>
 		</div>
-		<script src="./js/main.js"></script>
+		<script>
+		        var e = document.getElementById('inputemail');
+		        var p = document.getElementById('inputpassword');
+		        var b = document.getElementById('btn');
+		        var m = document.getElementById('messages');
+		        b.addEventListener('click', function(){
+		            var user = {
+		                "email" : e.value,
+		                "password" : p.value
+		            };
+		            var myheaders = new Headers({
+		                'Content-Type': 'application/json',
+		                'Accept' : 'application/json'
+		            });
+							 fetch('https://todo.della-mura.com.br/api/login', {
+							    method: 'post',
+							    headers: myheaders,
+							    body: JSON.stringify(user)
+							  }).then(function(response) {
+							    response.json().then(function(data){
+							    	m.innerText = data.message;
+							    });
+							  }).catch(function(error) {
+							    m.innerText = error;
+							  });
+							            m.innerText = 'LOGADO...';
+							  });
+		</script>
 	</body>
 </html>
